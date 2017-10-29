@@ -1,5 +1,11 @@
 var mongoose = require('mongoose');
 
+var uri = 'mongodb://user:pass@host:port/db';
+
+mongoose.Promise = global.Promise;
+
+mongoose.connect(uri);
+
 module.exports = (function() {
 
   'use strict';
