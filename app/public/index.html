@@ -1,0 +1,157 @@
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/app/public/style.css">
+    <link rel="stylesheet" href="/app/public/assets/css/main.css" />
+    <link rel="icon" type="image/png" href="/app/public/favicon.png">
+    <script src="/app/public/assets/js/jquery.min.js"></script>
+    <script src="/app/public/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/app/public/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/app/public/assets/js/jquery.onvisible.min.js"></script>
+    <script src="/app/public/assets/js/skel.min.js"></script>
+    <script src="/app/public/assets/js/util.js"></script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFdreYFdgDTnBhJcs4fZYQIJYIsHJC4b4"
+  type="text/javascript"></script>
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="/node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="/app/public/app.js"></script>
+    <title>DangerZone</title>
+  
+  </head>
+  <body class="homepage" ng-app="dangerZoneApp" ng-controller="DangerZoneController">
+    <div id="page-wrapper"> 
+
+      <!-- Header -->
+        <div id="header">
+
+          <!-- Inner -->
+            <div class="inner">
+              <header>
+                <h1>DangerZone</h1>
+                <hr />
+                <p ng-if="!loaded">Determining Geolocation...</p>
+                <p ng-if="loaded">Stay safe.</p>
+              </header>
+              <footer>
+                <a href="#banner" class="button circled scrolly">Start</a>
+              </footer>
+            </div>
+        </div>
+
+
+      <!-- Banner -->
+        <section id="banner">
+          <header>
+            <h2>This is <strong>DangerZone</strong>.</h2>
+            <p>
+              Data for your protection. 
+            </p>
+          </header>
+        </section>
+
+      <!-- Main -->
+        <div class="wrapper style2">
+
+          <article id="main" class="container special">
+          <!--
+            <div class="row">
+              <article class="6u 12u(mobile) special">
+                <div class="input-group">
+                  <span class="input-group-addon">Lat</span>
+                  <input type="text" step="0.01" class="form-control" placeholder="{{lat}}" ng-model="lat">
+                </div>
+              </article>
+              <article class="6u 12u(mobile) special">
+                <div class="input-group">
+                  <span class="input-group-addon">Long</span>
+                  <input type="text" step="0.01" class="form-control" placeholder="{{long}}" ng-model="long">
+                </div>
+              </article>
+            </div>
+            <article class="7u 12u(mobile) special"></article>
+            <article class="5u 12u(mobile) special">
+              <button type="button" class="button" ng-click="search(lat, long, true)">Search</button>
+            </article>-->
+
+            <div class="row">
+              <article class="6u 12u(mobile) special">
+                <div class="input-group">
+                  <span class="input-group-addon">Address</span>
+                  <input type="text" step="0.01" class="form-control" ng-model="geolocate">
+                </div>
+              </article>
+            </div>
+            <article class="7u 12u(mobile) special"></article>
+            <article class="5u 12u(mobile) special">
+              <button type="button" class="button" ng-click="search2(geolocate, true)">Search</button>
+            </article>
+
+            <div class="map">
+              <iframe id="map" ng-if="loaded" width="100%" height="420" frameborder="0" scrolling="no" ng-src="{{mapLink}}"></iframe>
+            </div>
+            <h5 ng-if="loaded && safetyRating">Vehicle Safety Rating: {{safetyRating}}/100</h5>
+            <h5 ng-if="loaded && crimePercentage">Relative Crime Rate: {{crimePercentage}}%</h5>
+            <table class="table table-bordered table-condensed" ng-if="loaded">
+              <thead>
+                <tr>
+                  <td>#</td>
+                  <td>Date</td>
+                  <td>Location</td>
+                  <td>Offense</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="(index, crime) in crimes">
+                  <td>{{index + 1}}</td>
+                  <td>{{crime.OCCURRED_ON_DATE}}</td>
+                  <td>{{crime.Location}}</td>
+                  <td>{{crime.OFFENSE_DESCRIPTION}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+
+        </div>
+
+      <!-- Footer -->
+        <div id="footer">
+          <div class="container">
+            <div class="row">
+
+            </div>
+            <hr />
+            <div class="row">
+              <div class="12u">
+
+                <!-- Contact -->
+                  <section class="contact">
+                    <ul class="icons">
+                      <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                      <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                      <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                      <li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+                      <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                      <li><a href="#" class="icon fa-linkedin"><span class="label">Linkedin</span></a></li>
+                    </ul>
+                  </section>
+
+                <!-- Copyright -->
+                  <div class="copyright">
+                    <ul class="menu">
+                      <li>&copy; Untitled. All rights reserved.</li>
+                    </ul>
+                  </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "node": {
+    "ip":"127.0.0.1",
+    "port":"8080"
+  },
+  "express": {
+    "session": {
+      "secret":"heh HEH"
+    }
+  },
+  "mongo": {
+    "connectionString":"mongodb://localhost/dangerzone"
+  }
+}
